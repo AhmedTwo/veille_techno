@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibilité Web</title>
+    <link rel="stylesheet" href="Accessibilité web.css">
+</head>
+<div>
+    <header>
+        <h1>Accessibilité Web : Explorer les Normes et Bonnes Pratiques</h1>
+    </header>
+
+    <div class="container">
+        <section>
+        <h2>Introduction</h2>
+        <p>
+            L'accessibilité web garantit que les sites sont utilisables par tous, y compris les personnes en situation de handicap. Elle est essentielle à l'inclusion numérique et soutenue par des réglementations comme le RGAA en France, l'ADA aux États-Unis, et les normes WCAG.
+        </p>
+    </section>
+
+    <section>
+        <h2>Pourquoi l’accessibilité est-elle essentielle ?</h2>
+        <ul>
+            <li><strong>Éthique et inclusion :</strong> Tous les utilisateurs, quelles que soient leurs capacités, doivent pouvoir accéder aux informations et services en ligne.</li>
+            <li><strong>Conformité légale :</strong> Les sites doivent répondre aux réglementations nationales et internationales pour éviter des sanctions.</li>
+            <li><strong>Amélioration de la qualité :</strong> En rendant un site plus accessible, on optimise souvent son ergonomie et sa clarté pour tous.</li>
+            <li><strong>Avantage compétitif :</strong> Les entreprises accessibles attirent un public plus large et améliorent leur image.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Étapes pour implémenter l’accessibilité web</h2>
+        <ol>
+            <li><strong>Évaluation initiale :</strong>
+                <ul>
+                    <li>Tester votre site avec des outils comme Wave ou Axe DevTools pour identifier les problèmes.</li>
+                    <li>Utiliser un lecteur d’écran pour simuler l’expérience d’un utilisateur malvoyant.</li>
+                </ul>
+            </li>
+            <li><strong>Plan d’action :</strong>
+                <ul>
+                    <li>Corriger les erreurs critiques : Ajouter des balises <code>alt</code> aux images, corriger les contrastes, etc.</li>
+                    <li>Former les équipes : Intégrer les bonnes pratiques d’accessibilité dans le processus de conception et développement.</li>
+                </ul>
+            </li>
+            <li><strong>Tests réguliers :</strong>
+                <ul>
+                    <li>Effectuer des tests utilisateur avec des personnes ayant des handicaps divers.</li>
+                    <li>Valider les mises à jour avec les normes WCAG.</li>
+                </ul>
+            </li>
+            <li><strong>Documentation :</strong>
+                <ul>
+                    <li>Fournir des guides pour l’équipe de contenu sur la rédaction accessible.</li>
+                    <li>Expliquer les choix d’accessibilité dans les cahiers des charges des projets.</li>
+                </ul>
+            </li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>Essayez cette interaction accessible</h2>
+        <p>Interagissez avec le bouton ci-dessous pour voir un message temporaire apparaître. Cette interaction a été conçue pour être accessible à tous.</p>
+        
+        <div class="button-container">
+            <button id="actionButton" aria-live="polite" aria-describedby="message" aria-label="Cliquez pour voir un message temporaire">Cliquez-moi</button>
+        </div>
+    
+        <div id="message" role="alert" aria-live="assertive" style="display:none;">
+            Action réussie ! Ce message disparaîtra dans 3 secondes.
+        </div>
+
+        <img 
+        src="/Assets/Images/AccessWeb.png" 
+        alt="Illustration représentant l'accessibilité web" 
+    />
+    </section>
+</div>
+    
+    <footer>
+        <div class="to-slide">
+            <a href="/Éco-conception.html" id="redirect-btn">Slide Suivante</a>
+        </div>
+        <div class="slide-container"></div>
+        <div class="to-slide-back">
+            <a href="/Sommaire.html" id="redirect-btn">Sommaire</a>
+        </div>
+        <div class="slide-container"></div>
+        <p>&copy; 2024 Accessibilité Web. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const sections = document.querySelectorAll("section");
+            const button = document.querySelector("#actionButton");
+            const message = document.querySelector("#message");
+
+            // Effet de scroll dynamique pour les sections
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => observer.observe(section));
+
+            // Bouton d'action
+            button.addEventListener("click", () => {
+                message.style.display = "block";
+                setTimeout(() => message.style.display = "none", 3000);
+            });
+        });
+    </script>
+</body>
+</html>

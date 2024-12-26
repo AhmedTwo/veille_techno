@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Images Deroulante</title>
+    <link rel="stylesheet" href="Images_deroulante.css">
+</head>
+<body>
+    <h1>Bonjour <br>
+        J'espère que la présentation vous a satisfait. <br>
+        <h1>
+</br>
+
+    <div class="carousel">
+        <div class="caption"></div>
+        <button class="prev-arrow">←</button>  <!-- Flèche gauche -->
+        <img src="/Assets/Images/AccessWeb.png" alt="Image 1" class="active">
+        <img src="/Assets/Images/eco.png" alt="Image 2">
+        <img src="/Assets/Images/experience-utilisateur.png" alt="Image 3">
+        <img src="/Assets/Images/LumiereIA.png" alt="Image 4">
+        <img src="/Assets/Images/développeur web.png" alt="Image 5">
+        <img src="/Assets/Images/branches.png" alt="Image 6">
+        <img src="/Assets/Images/securite.png" alt="Image 7">
+        <img src="/Assets/Images/seo.png" alt="Image 8">
+        <img src="/Assets/Images/veille.png" alt="Image 9">
+        <button class="next-arrow">→</button>  <!-- Flèche droite -->
+        <button id="pauseButton">Pause</button>
+    </div>
+
+    <div class="to-slide-back">
+        <a href="/Sommaire.html" id="redirect-btn">Sommaire</a>
+    </div>
+    <div class="slide-container"></div>
+
+    <script>
+        const images = document.querySelectorAll('.carousel img');
+const caption = document.querySelector('.caption');
+const captions = [
+    "Accédez à des ressources web pour améliorer votre présence en ligne.",
+    "Explorez des solutions écologiques pour un avenir durable et responsable.",
+    "Améliorez l'expérience utilisateur avec des interfaces intuitives et attrayantes.",
+    "L'intelligence artificielle transforme les données en insights pour des décisions éclairées.",
+    "Développez vos compétences en tant que développeur web dans un environnement dynamique.",
+    "Découvrez les différentes branches de la technologie et leur impact sur nos vies.",
+    "Assurez la sécurité de vos données avec des pratiques robustes et fiables.",
+    "Optimisez votre site pour les moteurs de recherche et augmentez votre visibilité.",
+    "Restez informé des dernières tendances technologiques pour anticiper l'avenir."
+];
+
+let currentIndex = 0;
+let intervalId; // Variable pour stocker l'intervalle
+let isPaused = false; // Variable pour gérer l'état de pause
+
+function updateCarousel() {
+    // Cacher toutes les images
+    images.forEach((img, index) => {
+        img.classList.remove('active');
+        if (index === currentIndex) {
+            img.classList.add('active'); // Afficher l'image active
+        }
+    });
+    caption.textContent = captions[currentIndex]; // Mettre à jour le texte de la légende
+}
+
+function showNext() {
+    currentIndex = (currentIndex + 1) % images.length; // Passer à l'image suivante
+    updateCarousel();
+}
+
+function showPrevious() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length; // Revenir à l'image précédente
+    updateCarousel();
+}
+
+// Fonction pour démarrer l'intervalle
+function startInterval() {
+    intervalId = setInterval(showNext, 4000); // Changer d'image toutes les 4 secondes
+}
+
+// Fonction pour arrêter l'intervalle
+function stopInterval() {
+    clearInterval(intervalId);
+}
+
+// Ajouter les événements aux flèches
+const nextArrow = document.querySelector('.next-arrow');
+const prevArrow = document.querySelector('.prev-arrow');
+const pauseButton = document.getElementById('pauseButton');
+
+nextArrow.addEventListener('click', showNext);  // Cliquer sur la flèche droite
+prevArrow.addEventListener('click', showPrevious);  // Cliquer sur la flèche gauche
+
+// Gestion du bouton Pause
+pauseButton.addEventListener('click', () => {
+    if (isPaused) {
+        startInterval(); // Reprendre le carrousel
+        pauseButton.textContent = "Pause";
+    } else {
+        stopInterval(); // Mettre en pause le carrousel
+        pauseButton.textContent = "Reprendre";
+    }
+    isPaused = !isPaused; // Alterner l'état de pause
+});
+
+startInterval(); // Démarrer le carrousel à l'initialisation
+updateCarousel(); // Initialiser le carrousel
+    </script>
+    
+</body>
+</html>
