@@ -394,3 +394,62 @@ footer p {
     background: linear-gradient(45deg, #a055a0, #b1aab3);
     transform: scale(1.1);
 }
+
+@media (max-width: 1200px) {
+    img {
+        width: 400px;
+    }
+    section {
+        flex: 1 1 48%;
+    }
+}
+
+@media (max-width: 992px) {
+    img {
+        width: 300px;
+    }
+    section {
+        flex: 1 1 100%;
+        margin-bottom: 20px;
+    }
+    .to-slide a, .to-slide-back a {
+        bottom: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.4rem;
+    }
+    footer p {
+        font-size: 2rem;
+    }
+    ul {
+        padding: 0;
+    }
+    li {
+        font-size: 1rem;
+    }
+    button {
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    img {
+        width: 200px;
+    }
+    button {
+        font-size: 0.9rem;
+        padding: 10px 18px;
+    }
+    header h1, footer p {
+        font-size: 1.8rem;
+    }
+    section p {
+        font-size: 1rem;
+    }
+}
