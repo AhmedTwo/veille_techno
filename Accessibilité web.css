@@ -217,7 +217,7 @@ section.visible {
 
 section:hover {
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-    background: rgb(150, 147, 149);
+    background: rgba(150, 147, 149, 0.356);
     border-color: var(--primary-color);
     color: black !important; /* Texte devient noir, on force la priorité avec !important */
 }
